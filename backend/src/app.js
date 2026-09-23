@@ -1,13 +1,12 @@
-import express from 'express'; 
+import express from 'express';
+import rutas from './routes/index.js';
 
-const app = express(); 
+const app = express();
 
-app.use(express.json()); 
+// Guardia que sabe leer comandas en formato JSON
+app.use(express.json());
 
-app.get('/api/health', (req, res) => { 
-    res.status(200).json({ 
-        status: 'ok', 
-    }); 
-}); 
+// Todo lo que empiece con /api va al directorio de rutas
+app.use('/api', rutas);
 
 export default app;
