@@ -1,6 +1,8 @@
 import express from 'express';
 import helmet from 'helmet';
+import cors from 'cors';
 import rutas from './routes/index.js';
+import { opcionesCors } from './config/cors.js';
 import { asignarRequestId } from './middlewares/request-id.js';
 import { registrarPeticion } from './middlewares/logger.js';
 import { rutaNoEncontrada } from './middlewares/not-found.js';
@@ -17,16 +19,19 @@ app.use(registrarPeticion);
 // 🪖 3. Casco de seguridad: etiquetas seguras en cada respuesta
 app.use(helmet());
 
-// 📄 4. Guardia que sabe leer comandas en formato JSON
+// 🚪 4. Lista de invitados: desde qué páginas nos pueden llamar
+app.use(cors(opcionesCors));
+
+// 📄 5. Guardia que sabe leer comandas en formato JSON
 app.use(express.json());
 
-// 🗂️ 5. Todo lo que empiece con /api va al directorio de rutas
+// 🗂️ 6. Todo lo que empiece con /api va al directorio de rutas
 app.use('/api', rutas);
 
-// 🤷 6. Si nadie atendió el pedido: "ese plato no está en el menú"
+// 🤷 7. Si nadie atendió el pedido: "ese plato no está en el menú"
 app.use(rutaNoEncontrada);
 
-// 🛎️ 7. Mostrador de reclamos: SIEMPRE al final
+// 🛎️ 8. Mostrador de reclamos: SIEMPRE al final
 app.use(manejarErrores);
 
 export default app;
