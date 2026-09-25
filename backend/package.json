@@ -10,8 +10,8 @@
     "db:migrate": "node --env-file=.env scripts/db-migrate.js",
     "db:seed": "node --env-file=.env scripts/db-seed.js",
     "db:status": "node --env-file=.env scripts/db-status.js",
-    "db:check:test": "node --env-file=.env.test scripts/db-check.js", 
-    "db:migrate:test": "node --env-file=.env.test scripts/db-migrate.js", 
+    "db:check:test": "node --env-file=.env.test scripts/db-check.js",
+    "db:migrate:test": "node --env-file=.env.test scripts/db-migrate.js",
     "db:seed:test": "node --env-file=.env.test scripts/db-seed.js",
     "db:status:test": "node --env-file=.env.test scripts/db-status.js",
     "test": "echo \"Error: no test specified\" && exit 1"
@@ -23,6 +23,7 @@
   "dependencies": {
     "dotenv": "^17.4.2",
     "express": "^5.2.1",
+    "helmet": "^8.3.0",
     "pg": "^8.23.0"
   },
   "devDependencies": {
