@@ -22,16 +22,19 @@ export function manejarErrores(error, req, res, next) {
       respuesta.error.detalles = error.detalles;
     }
 
+    respuesta.error.requestId = req.requestId;
+
     return res.status(error.status).json(respuesta);
   }
 
-  // 🔴 Error INESPERADO: detalles en la terminal, disculpa al cliente
-  console.error('💥 Error inesperado:', error);
+  // 🔴 Error INESPERADO: detalles en la terminal (con ticket), disculpa al cliente
+  console.error(`💥 Error inesperado (id=${req.requestId}):`, error);
 
   return res.status(500).json({
     error: {
       codigo: ERROR_CODES.ERROR_INTERNO,
       mensaje: 'Ocurrió un error inesperado.',
+      requestId: req.requestId,
     },
   });
 }
