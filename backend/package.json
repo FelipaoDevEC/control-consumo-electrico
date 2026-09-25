@@ -6,6 +6,8 @@
   "scripts": {
     "dev": "node --watch src/server.js",
     "start": "node src/server.js",
+    "test": "cross-env NODE_ENV=test vitest run",
+    "test:watch": "cross-env NODE_ENV=test vitest",
     "db:check": "node --env-file=.env scripts/db-check.js",
     "db:migrate": "node --env-file=.env scripts/db-migrate.js",
     "db:seed": "node --env-file=.env scripts/db-seed.js",
@@ -13,8 +15,7 @@
     "db:check:test": "node --env-file=.env.test scripts/db-check.js",
     "db:migrate:test": "node --env-file=.env.test scripts/db-migrate.js",
     "db:seed:test": "node --env-file=.env.test scripts/db-seed.js",
-    "db:status:test": "node --env-file=.env.test scripts/db-status.js",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "db:status:test": "node --env-file=.env.test scripts/db-status.js"
   },
   "keywords": [],
   "author": "",
@@ -30,6 +31,8 @@
     "zod": "^4.6.5"
   },
   "devDependencies": {
-    "cross-env": "^10.1.0"
+    "cross-env": "^10.1.0",
+    "supertest": "^7.3.0",
+    "vitest": "^5.0.2"
   }
 }
