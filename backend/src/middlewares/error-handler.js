@@ -1,13 +1,40 @@
 import { AppError } from '../errors/app-error.js';
 import { ERROR_CODES } from '../errors/error-codes.js';
 
+// 🔎 Traductor: convierte los errores del lector de JSON
+// en errores ESPERADOS (culpa del cliente, no de la cocina)
+function traducirErrorDelBody(error) {
+  // 📝 La comanda no se puede leer
+  if (error.type === 'entity.parse.failed') {
+    return new AppError({
+      status: 400,
+      codigo: ERROR_CODES.JSON_INVALIDO,
+      mensaje: 'El cuerpo de la petición no es un JSON válido.',
+    });
+  }
+
+  // 📦 La comanda es demasiado grande
+  if (error.type === 'entity.too.large') {
+    return new AppError({
+      status: 413,
+      codigo: ERROR_CODES.SECURITY_BODY_DEMASIADO_GRANDE,
+      mensaje: 'El cuerpo de la petición es demasiado grande.',
+    });
+  }
+
+  // Cualquier otro error sigue igual
+  return error;
+}
+
 // Mostrador de reclamos: TODOS los errores terminan aquí.
 // Express lo reconoce porque recibe 4 cosas: (error, req, res, next)
-export function manejarErrores(error, req, res, next) {
+export function manejarErrores(errorOriginal, req, res, next) {
   // Si ya empezamos a responder, no podemos cambiar la respuesta
   if (res.headersSent) {
-    return next(error);
+    return next(errorOriginal);
   }
+
+  const error = traducirErrorDelBody(errorOriginal);
 
   // 🟡 Error ESPERADO: le explicamos al cliente qué pasó
   if (error instanceof AppError) {

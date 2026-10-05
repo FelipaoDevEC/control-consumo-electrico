@@ -22,8 +22,8 @@ app.use(helmet());
 // 🚪 4. Lista de invitados: desde qué páginas nos pueden llamar
 app.use(cors(opcionesCors));
 
-// 📄 5. Guardia que sabe leer comandas en formato JSON
-app.use(express.json());
+// 📄 5. Lector de comandas JSON, con buzón de máximo 100 KB
+app.use(express.json({ limit: '100kb' }));
 
 // 🗂️ 6. Todo lo que empiece con /api va al directorio de rutas
 app.use('/api', rutas);

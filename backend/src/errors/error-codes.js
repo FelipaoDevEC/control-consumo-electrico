@@ -2,5 +2,7 @@
 // Iremos agregando más cuando los necesitemos, no antes.
 export const ERROR_CODES = Object.freeze({
   RUTA_NO_ENCONTRADA: 'RUTA_NO_ENCONTRADA',
+  JSON_INVALIDO: 'JSON_INVALIDO',
+  SECURITY_BODY_DEMASIADO_GRANDE: 'SECURITY_BODY_DEMASIADO_GRANDE',
   ERROR_INTERNO: 'ERROR_INTERNO',
 });
