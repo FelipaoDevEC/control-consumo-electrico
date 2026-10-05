@@ -2,7 +2,7 @@
 
 > **Etiqueta Git:** `cp1` · **Commit:** `feat: configurar PostgreSQL y migraciones iniciales`
 >
-> Guía original usada: [`docs/check/updated-checkpoint/`](../check/updated-checkpoint/) (versión simplificada del CP1, ver [D-001](../DECISIONES.md)).
+> Guía original usada: [`CHECKPOINT-001-postgresql.md`](../checkpoints/CHECKPOINT-001-postgresql.md) (versión simplificada del CP1, ver [D-001](../DECISIONES.md)).
 
 ## 🎯 Objetivo
 

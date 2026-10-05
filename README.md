@@ -39,7 +39,8 @@ Otros documentos:
 | Documento | Para qué sirve |
 |---|---|
 | [`docs/specs/`](docs/specs/) | Las especificaciones SPEC-000 a SPEC-012: **qué** debe hacer el sistema |
-| [`docs/check/`](docs/check/) | Los checkpoints originales de implementación |
+| [`docs/checkpoints/`](docs/checkpoints/) | **Guías completas** paso a paso de cada checkpoint |
+| [`docs/check-original/`](docs/check-original/) | Los checkpoints originales (solo como archivo histórico) |
 | [`docs/DECISIONES.md`](docs/DECISIONES.md) | Decisiones técnicas tomadas durante la implementación |
 
 ---
