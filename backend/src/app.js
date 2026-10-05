@@ -1,4 +1,5 @@
 import express from 'express';
+import helmet from 'helmet';
 import rutas from './routes/index.js';
 import { asignarRequestId } from './middlewares/request-id.js';
 import { registrarPeticion } from './middlewares/logger.js';
@@ -13,16 +14,19 @@ app.use(asignarRequestId);
 // 📓 2. La bitácora anota todos los pedidos
 app.use(registrarPeticion);
 
-// 📄 3. Guardia que sabe leer comandas en formato JSON
+// 🪖 3. Casco de seguridad: etiquetas seguras en cada respuesta
+app.use(helmet());
+
+// 📄 4. Guardia que sabe leer comandas en formato JSON
 app.use(express.json());
 
-// 🗂️ 4. Todo lo que empiece con /api va al directorio de rutas
+// 🗂️ 5. Todo lo que empiece con /api va al directorio de rutas
 app.use('/api', rutas);
 
-// 🤷 5. Si nadie atendió el pedido: "ese plato no está en el menú"
+// 🤷 6. Si nadie atendió el pedido: "ese plato no está en el menú"
 app.use(rutaNoEncontrada);
 
-// 🛎️ 6. Mostrador de reclamos: SIEMPRE al final
+// 🛎️ 7. Mostrador de reclamos: SIEMPRE al final
 app.use(manejarErrores);
 
 export default app;
